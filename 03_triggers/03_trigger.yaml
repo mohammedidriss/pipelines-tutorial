@@ -8,3 +8,4 @@ spec:
     - ref: vote-app
   template:
     ref: vote-app
+    
