@@ -152,8 +152,10 @@ Note that only the requirement for a git repository is declared on the task and 
 Install the `apply-manifests` and `update-deployment` tasks from the repository using `oc` or `kubectl`, which you will need for creating a pipeline in the next section:
 
 ```bash
+  oc create -f https://raw.githubusercontent.com/mohammedidriss/pipelines-tutorial/master/01_pipeline/01_apply_manifest_task.yaml
 $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/master/01_pipeline/01_apply_manifest_task.yaml
-
+  
+  oc create -f https://raw.githubusercontent.com/mohammedidriss/pipelines-tutorial/master/01_pipeline/02_update_deployment_task.yaml
 $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/master/01_pipeline/02_update_deployment_task.yaml
 ```
 
@@ -291,6 +293,7 @@ The execution order of task is determined by dependencies that are defined betwe
 Create the pipeline by running the following:
 
 ```bash
+oc create -f https://raw.githubusercontent.com/mohammedidriss/pipelines-tutorial/master/01_pipeline/04_pipeline.yaml
 $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/master/01_pipeline/04_pipeline.yaml
 ```
 
@@ -334,9 +337,9 @@ Lets start a pipeline to build and deploy backend application using `tkn`:
 
 ```bash
 $ tkn pipeline start build-and-deploy \
-    -w name=shared-workspace,volumeClaimTemplateFile=https://raw.githubusercontent.com/openshift/pipelines-tutorial/master/01_pipeline/03_persistent_volume_claim.yaml \
+    -w name=shared-workspace,volumeClaimTemplateFile=https://raw.githubusercontent.com/mohammedidriss/pipelines-tutorial/master/01_pipeline/03_persistent_volume_claim.yaml \
     -p deployment-name=vote-api \
-    -p git-url=https://github.com/openshift-pipelines/vote-api.git \
+    -p git-url=https://github.com/mohammedidriss/pipelines-vote-api.git \
     -p IMAGE=image-registry.openshift-image-registry.svc:5000/pipelines-tutorial/vote-api \
 
 Pipelinerun started: build-and-deploy-run-z2rz8
@@ -349,9 +352,9 @@ Similarly, start a pipeline to build and deploy frontend application:
 
 ```bash
 $ tkn pipeline start build-and-deploy \
-    -w name=shared-workspace,volumeClaimTemplateFile=https://raw.githubusercontent.com/openshift/pipelines-tutorial/master/01_pipeline/03_persistent_volume_claim.yaml \
+    -w name=shared-workspace,volumeClaimTemplateFile=https://raw.githubusercontent.com/mohammedidriss/pipelines-tutorial/master/01_pipeline/03_persistent_volume_claim.yaml \
     -p deployment-name=vote-ui \
-    -p git-url=https://github.com/openshift-pipelines/vote-ui.git \
+    -p git-url=https://github.com/mohammedidriss/pipelines-vote-ui.git \
     -p IMAGE=image-registry.openshift-image-registry.svc:5000/pipelines-tutorial/vote-ui \
 
 Pipelinerun started: build-and-deploy-run-xy7rw
@@ -482,6 +485,7 @@ spec:
 * Run following command to apply Triggertemplate.
 
 ```bash
+oc create -f https://raw.githubusercontent.com/mohammedidriss/pipelines-tutorial/master/03_triggers/02_template.yaml
 $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/master/03_triggers/02_template.yaml
 ```
 
@@ -511,6 +515,7 @@ The exact paths (keys) of parameter we need can be found by examining the event 
 Run following command to apply TriggerBinding.
 
 ```bash
+oc create -f https://raw.githubusercontent.com/mohammedidriss/pipelines-tutorial/master/03_triggers/01_binding.yaml
 $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/master/03_triggers/01_binding.yaml
 ```
 
@@ -536,6 +541,7 @@ spec:
 Run following command to apply Trigger.
 
 ```bash
+oc create -f https://raw.githubusercontent.com/mohammedidriss/pipelines-tutorial/master/03_triggers/03_trigger.yaml
 $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/master/03_triggers/03_trigger.yaml
 ```
 
@@ -565,6 +571,7 @@ spec:
 * Run following command to create EventListener.
 
 ```bash
+oc create -f https://raw.githubusercontent.com/mohammedidriss/pipelines-tutorial/master/03_triggers/04_event_listener.yaml
 $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/master/03_triggers/04_event_listener.yaml
 ```
 
