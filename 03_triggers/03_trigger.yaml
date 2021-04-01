@@ -7,5 +7,5 @@ spec:
   bindings:
     - ref: vote-app
   template:
-    ref: vote-app
+    name: vote-app
     
